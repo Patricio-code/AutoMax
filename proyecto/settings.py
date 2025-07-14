@@ -14,7 +14,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 import environ
 import os
-from distutils.util import strtobool
+from str_to_bool import str_to_bool
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +31,7 @@ env.read_env()#Puedo definir un path, pero por defecto busca el .env en la carpe
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(env('DEBUG'))
+DEBUG = str_to_bool(env('DEBUG'))
 
 ALLOWED_HOSTS = list(env('ALLOWED_HOSTS').split(','))
 
@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if strtobool(env('USEDEBUGDB')):
+if str_to_bool(env('USEDEBUGDB')):
     print('Base de datos modo Debug')
     DATABASES = {
         'default': {
