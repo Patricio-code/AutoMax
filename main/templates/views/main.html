@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load static %} <!--lo vuelvo a poner xq a pesar de usar el extends, el video pertenece a esta vista y no se "hereda" desde base.html-->
+{% block 'body' %}
+    <div class="d-flex h-100 text-center text-white index">
+       <video autoplay muted loop id="myVideo">
+            <source src="{% static 'videos/bg.mp4' %}" type="video/mp4">
+       </video> 
+       <div class="d-flex w-100 h-100 p-3 mx-auto flex-column main-content">
+            <header class="mb-auto">
+                <div>
+                    <h3 class="float-md-start mb-0">AutoMax</h3>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        {% if request.user.is_authenticated %}
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        {% else %}
+                        <a class="nav-link"  aria-current="page" href="{% url 'login' %}">Ingresar</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </header>
+            <main class="px-3">
+                <h2>Encontrá tu auto</h2>
+                <p class="lead">¿Estás buscando comprar o vender un auto? Nosotros lo tenemos cubierto. </br> AutoMax está para vos.</p>
+                <p class="lead">
+                    <a href="{% url 'register' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Registrate</a>
+                </p>
+            </main>
+            <footer class="mt-auto text-white-50">
+                <p>Copyright © {% now 'Y' %} <a href="" class="text-white">AutoMax</a> by <a href=""class="text-white">Mi link</a></p>
+            </footer>
+       </div>
+    </div>
+{% endblock %}
+
